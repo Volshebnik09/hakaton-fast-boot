@@ -1,0 +1,16 @@
+services:
+  client:
+    volumes:
+      - ./client/app:/app
+    build:
+      dockerfile: docker/Dockerfile.dev
+
+  postgres:
+    ports:
+      - "5432:5432"
+
+  server:
+    volumes:
+      - ./server/app:/app
+    build:
+      dockerfile: docker/Dockerfile.dev

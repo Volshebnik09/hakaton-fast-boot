@@ -1,0 +1,38 @@
+services:
+  client:
+    env_file:
+      - .env
+    build:
+      context: ./client
+      dockerfile: docker/Dockerfile
+
+  nginx:
+    volumes:
+      - nginx:/etc/nginx
+    ports:
+      - 80:80
+    env_file:
+      - .env
+    build:
+      context: ./nginx
+      dockerfile: docker/Dockerfile
+#
+#  server:
+#    env_file:
+#      - .env
+#    build:
+#      context: ./server
+#      dockerfile: docker/Dockerfile
+
+  postgres:
+    env_file:
+      - .env
+    image: 'postgres:16-alpine'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+  server_node_modules:
+  client_node_modules:
+  nginx:
